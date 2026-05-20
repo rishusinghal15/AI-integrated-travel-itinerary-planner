@@ -32,7 +32,7 @@ body {
   opacity: 0.9;
 }
 
-/* ── FORM ───────────────────────────────────────────────── */
+/* FORM */
 .form-card {
   background: white;
   border-radius: 20px;
@@ -108,7 +108,7 @@ body {
   cursor: not-allowed;
 }
 
-/* ── LOADING ────────────────────────────────────────────── */
+/* LOADING */
 .loading-card {
   background: white;
   border-radius: 20px;
@@ -143,7 +143,7 @@ body {
   margin-top: 8px;
 }
 
-/* ── ITINERARY ──────────────────────────────────────────── */
+/* ITINERARY */
 .itinerary-container {
   margin-top: 20px;
 }
@@ -219,12 +219,6 @@ body {
   font-weight: 600;
   cursor: pointer;
   font-size: 0.95rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.btn-pdf:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
 }
 
 .btn-new {
@@ -236,12 +230,6 @@ body {
   font-weight: 600;
   cursor: pointer;
   font-size: 0.95rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.btn-new:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 .transport-card {
@@ -267,7 +255,7 @@ body {
   color: #4a4a6a;
 }
 
-/* ── DAY CARD ───────────────────────────────────────────── */
+/* DAY CARD */
 .day-card {
   background: white;
   border-radius: 16px;
@@ -365,7 +353,7 @@ body {
 }
 
 .stay-section {
-  background: #f8f0ff;
+  background: #f9f0ff;
 }
 
 .stay-section h4 {
@@ -388,6 +376,77 @@ body {
 .food-item strong {
   display: block;
   color: #333;
+}
+
+/* MAPS & BOOKING BUTTONS */
+.maps-btn {
+  margin-top: 8px;
+  padding: 5px 12px;
+  background: #e8f4fd;
+  color: #2980b9;
+  border: 1px solid #aed6f1;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.maps-btn:hover {
+  background: #d0eaf8;
+}
+
+.booking-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.book-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.book-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.book-btn.flight {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.book-btn.train {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.book-btn.bus {
+  background: #fce4ec;
+  color: #c62828;
+}
+
+.book-btn.mmt {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.book-btn.goibibo {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.book-btn.agoda {
+  background: #fff8e1;
+  color: #f57f17;
 }
 
 /* ── RE-PLANNER CHAT ────────────────────────────────────── */
