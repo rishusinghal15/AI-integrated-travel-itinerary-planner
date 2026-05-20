@@ -8,10 +8,13 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: '*',
+  origin: [
+    'http://localhost:5173',
+    'https://ai-integrated-travel-itinerary-plan.vercel.app'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
-}));
+}))
 
 app.use(express.json());
 
