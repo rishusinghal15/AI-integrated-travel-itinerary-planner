@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
+import API_URL from '../config'
 
 export default function AuthPage() {
     const [isLogin, setIsLogin] = useState(true)
@@ -28,7 +29,7 @@ export default function AuthPage() {
             : { name: form.name, email: form.email, password: form.password }
 
         try {
-            const res = await fetch(`http://localhost:5000${endpoint}`, {
+            const res = await fetch(`${API_URL}${endpoint}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
+import API_URL from '../config'
 
 export default function Dashboard({ onLoadItinerary, onNewTrip }) {
     const { user, token, logout } = useAuth()
@@ -13,7 +14,7 @@ export default function Dashboard({ onLoadItinerary, onNewTrip }) {
 
     const fetchItineraries = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/itineraries/my-itineraries', {
+            const res = await fetch(`${API_URL}/api/itineraries/my-itineraries`, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             const data = await res.json()
@@ -29,7 +30,7 @@ export default function Dashboard({ onLoadItinerary, onNewTrip }) {
         if (!window.confirm('Are you sure you want to delete this itinerary?')) return
         setDeleting(id)
         try {
-            const res = await fetch(`http://localhost:5000/api/itineraries/${id}`, {
+            const res = await fetch(`${API_URL}/api/itineraries/${id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` }
             })
@@ -52,7 +53,6 @@ export default function Dashboard({ onLoadItinerary, onNewTrip }) {
 
     return (
         <div className="app">
-            {/* Top navbar */}
             <div className="dashboard-nav">
                 <div className="nav-logo">✈️ AI Travel Planner</div>
                 <div className="nav-right">
@@ -62,7 +62,6 @@ export default function Dashboard({ onLoadItinerary, onNewTrip }) {
             </div>
 
             <div className="dashboard-content">
-                {/* Welcome + New Trip */}
                 <div className="dashboard-welcome">
                     <div>
                         <h2>Welcome, {user?.name?.split(' ')[0]}! 🌍</h2>
@@ -73,7 +72,6 @@ export default function Dashboard({ onLoadItinerary, onNewTrip }) {
                     </button>
                 </div>
 
-                {/* Saved Itineraries */}
                 <div className="saved-section">
                     <h3 className="saved-title">
                         🗂️ My Saved Itineraries

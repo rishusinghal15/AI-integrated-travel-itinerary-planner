@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard'
 import TravelForm from './components/TravelForm'
 import ItineraryDisplay from './components/ItineraryDisplay'
 import ReplanChat from './components/ReplanChat'
+import API_URL from './config'
 
 function App() {
   const { user, token, loading } = useAuth()
@@ -38,7 +39,7 @@ function App() {
     setView('itinerary')
 
     try {
-      const res = await fetch('http://localhost:5000/api/generate-itinerary', {
+      const res = await fetch(`${API_URL}/api/generate-itinerary`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -46,7 +47,6 @@ function App() {
       const data = await res.json()
       if (data.success) {
         setItinerary(data.itinerary)
-        // Auto-save to MongoDB
         autoSave(data.itinerary, formData.style)
       } else {
         setError('Failed to generate itinerary. Please try again.')
@@ -60,7 +60,7 @@ function App() {
 
   const autoSave = async (itineraryData, travelStyle) => {
     try {
-      const res = await fetch('http://localhost:5000/api/itineraries/save', {
+      const res = await fetch(`${API_URL}/api/itineraries/save`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ function App() {
     setChatHistory(newHistory)
 
     try {
-      const res = await fetch('http://localhost:5000/api/replan', {
+      const res = await fetch(`${API_URL}/api/replan`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ itinerary, userMessage })
@@ -93,9 +93,8 @@ function App() {
 
       if (data.success) {
         setItinerary(data.itinerary)
-        // Update saved copy in MongoDB
         if (savedId) {
-          await fetch(`http://localhost:5000/api/itineraries/${savedId}`, {
+          await fetch(`${API_URL}/api/itineraries/${savedId}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -139,7 +138,6 @@ function App() {
     setView('itinerary')
   }
 
-  // DASHBOARD VIEW
   if (view === 'dashboard') {
     return (
       <Dashboard
@@ -149,7 +147,6 @@ function App() {
     )
   }
 
-  // FORM VIEW
   if (view === 'form') {
     return (
       <div className="app">
@@ -167,7 +164,6 @@ function App() {
     )
   }
 
-  // ITINERARY VIEW
   return (
     <div className="app">
       <div className="top-bar">
