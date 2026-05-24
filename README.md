@@ -1,27 +1,41 @@
 # AI-Integrated Travel Itinerary Planner
 
-> **Cut your trip planning time by 80%** — AI-generated personalized itineraries with route optimization and instant PDF export.
+> **Cut your trip planning time by 80%** — AI-generated personalized itineraries with live place search, hotel booking, JWT auth, and instant PDF export.
+
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_App-38bdf8?style=for-the-badge)](https://ai-integrated-travel-itinerary-plan.vercel.app/)
+[![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://ai-integrated-travel-itinerary-plan.vercel.app/)
 
 ![Tech](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
 ![Tech](https://img.shields.io/badge/MongoDB-4EA94B?style=flat-square&logo=mongodb&logoColor=white)
-![Tech](https://img.shields.io/badge/Google_Maps_API-4285F4?style=flat-square&logo=googlemaps&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
+![Tech](https://img.shields.io/badge/Groq_API-F55036?style=flat-square&logo=groq&logoColor=white)
+![Tech](https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white)
+![Tech](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Live-brightgreen?style=flat-square)
+
+---
+
+## 🌐 Live Demo
+
+**[https://ai-integrated-travel-itinerary-plan.vercel.app/](https://ai-integrated-travel-itinerary-plan.vercel.app/)**
 
 ---
 
 ## 📌 What It Does
 
-Planning a trip used to mean hours of research, tab-switching, and manual route figuring. This app eliminates all that.
+Planning a trip used to mean hours of research, tab-switching, and manually figuring out routes. This app eliminates all of that.
 
-You enter your destination, travel dates, interests, and budget — and the app returns a **complete, day-by-day itinerary** powered by OpenAI, with optimized routes on a live map.
+Enter your destination, travel dates, interests, and budget — and the app instantly returns a **complete, day-by-day itinerary** powered by Groq AI, with live place search, hotel booking integration, and a downloadable PDF — all behind a secure JWT-authenticated session.
 
 ### Key Features
 
-- 🧠 **AI-generated itineraries** via Groq API — personalized to your preferences
-- 🗺️ **Google Maps integration** — optimized routes across 100+ locations
-- 📄 **jsPDF export** — download your full itinerary as a structured PDF instantly
-- 💾 **MongoDB persistence** — save, retrieve, and manage multiple trip plans
-- ⚡ **Async JavaScript** — non-blocking API calls for smooth UX
+- 🧠 **AI-generated itineraries** via Groq API — real-time, personalized to your preferences
+- 🔍 **Live place search** — search and discover destinations across 100+ locations dynamically
+- 🏨 **Hotel booking integration** — find and book accommodations directly within the app
+- 🔐 **JWT authentication** — secure user sessions with token-based auth (login, register, protected routes)
+- 📄 **jsPDF export** — download your full itinerary as a structured, shareable PDF instantly
+- 💾 **MongoDB persistence** — save, retrieve, and manage multiple trip plans per user
+- 📚 **Modular backend** — well-documented, maintainable code structure following best practices
+- ⚡ **Deployed on Vercel** — live and accessible anytime
 
 ---
 
@@ -30,24 +44,34 @@ You enter your destination, travel dates, interests, and budget — and the app 
 | Layer | Technology |
 |-------|-----------|
 | Backend | Node.js, Express.js |
-| AI | Groq API |
-| Maps | Google Maps |
+| AI | Groq API (real-time LLM inference) |
+| Auth | JWT (JSON Web Tokens) |
 | Database | MongoDB |
 | Export | jsPDF |
+| Deployment | Vercel |
 | Other | REST APIs, Async/Await |
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### Option 1 — Use the Live App
+
+👉 **[https://ai-integrated-travel-itinerary-plan.vercel.app/](https://ai-integrated-travel-itinerary-plan.vercel.app/)**
+
+No setup needed — just open and start planning!
+
+---
+
+### Option 2 — Run Locally
+
+#### Prerequisites
 
 - Node.js v18+
 - MongoDB (local or Atlas)
-- Groq API key
-- Google Maps
+- Groq API key → [get one free at console.groq.com](https://console.groq.com)
 
-### Installation
+#### Installation
 
 ```bash
 # 1. Clone the repo
@@ -59,18 +83,18 @@ npm install
 
 # 3. Set up environment variables
 cp .env.example .env
-# Fill in your API keys in .env
+# Fill in your keys in .env
 
 # 4. Start the server
 npm start
 ```
 
-### Environment Variables
+#### Environment Variables
 
 ```env
-OPENAI_API_KEY=your_openai_key_here
-GOOGLE_MAPS_API_KEY=your_google_maps_key_here
+GROQ_API_KEY=your_groq_api_key_here
 MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
 PORT=3000
 ```
 
@@ -83,8 +107,9 @@ AI-integrated-travel-itinerary-planner/
 ├── server/
 │   ├── routes/          # API route handlers
 │   ├── controllers/     # Business logic
-│   ├── models/          # MongoDB schemas
-│   └── services/        # OpenAI & Maps integrations
+│   ├── models/          # MongoDB schemas (User, Trip)
+│   ├── middleware/       # JWT auth middleware
+│   └── services/        # Groq API & place search integrations
 ├── public/
 │   ├── index.html       # Frontend UI
 │   ├── style.css
@@ -98,19 +123,21 @@ AI-integrated-travel-itinerary-planner/
 ## 💡 How It Works
 
 ```
-User Input (destination, dates, interests, budget)
+User registers / logs in (JWT issued)
         ↓
-  Node.js Backend receives request
+Enter destination, dates, interests, budget
         ↓
-  OpenAI API generates personalized itinerary
+Live place search fetches real locations dynamically
         ↓
-  Google Maps API optimizes routes between stops
+Groq API generates personalized day-by-day itinerary
         ↓
-  MongoDB saves the trip plan
+Hotel booking options surfaced within the itinerary
         ↓
-  Frontend renders itinerary + map
+MongoDB saves the trip plan to user's account
         ↓
-  User downloads PDF via jsPDF
+Frontend renders complete itinerary
+        ↓
+User downloads structured PDF via jsPDF
 ```
 
 ---
@@ -118,26 +145,29 @@ User Input (destination, dates, interests, budget)
 ## 📈 Impact
 
 - ⏱️ Reduces trip planning time by **~80%** compared to manual research
-- 📍 Optimizes routes across **100+ locations** using Google Maps
-- 📄 Generates structured **multi-day itineraries** exportable as PDF
+- 📍 Live search across **100+ destinations** with real-time results
+- 🔐 **Secure** — every user's trips are protected behind JWT auth
+- 📄 Instant **PDF export** for shareable, structured multi-day plans
 
 ---
 
 ## 🔮 Future Improvements
 
-- [ ] User authentication & saved trips dashboard
-- [ ] Real-time flight & hotel price integration
-- [ ] Budget tracker per day/category
+- [ ] Real-time flight price integration
+- [ ] Budget tracker per day / category
+- [ ] Collaborative trip planning (shared itineraries)
 - [ ] Mobile app (React Native)
 
 ---
 
 ## 👨‍💻 Author
 
-**Rishu Singhal**  
+**Rishu Singhal** — Pre-final year CS @ JECRC University, Jaipur
+
+[![Portfolio](https://img.shields.io/badge/Live_App-Visit-38bdf8?style=flat-square)](https://ai-integrated-travel-itinerary-plan.vercel.app/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/rishusinghal)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/rishusinghal15)
 
 ---
 
-⭐ **If this project helped or inspired you, consider giving it a star!**
+⭐ **If this project helped or inspired you, drop a star — it means a lot!**
