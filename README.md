@@ -31,8 +31,8 @@ You enter your destination, travel dates, interests, and budget — and the app 
 | Layer | Technology |
 |-------|-----------|
 | Backend | Node.js, Express.js |
-| AI | OpenAI API (GPT) |
-| Maps | Google Maps JavaScript API |
+| AI | Groq API |
+| Maps | Google Maps |
 | Database | MongoDB |
 | Export | jsPDF |
 | Other | REST APIs, Async/Await |
