@@ -18,7 +18,7 @@ You enter your destination, travel dates, interests, and budget — and the app 
 
 ### Key Features
 
-- 🧠 **AI-generated itineraries** via OpenAI API — personalized to your preferences
+- 🧠 **AI-generated itineraries** via Groq API — personalized to your preferences
 - 🗺️ **Google Maps integration** — optimized routes across 100+ locations
 - 📄 **jsPDF export** — download your full itinerary as a structured PDF instantly
 - 💾 **MongoDB persistence** — save, retrieve, and manage multiple trip plans
